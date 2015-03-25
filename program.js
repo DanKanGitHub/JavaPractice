@@ -1,10 +1,7 @@
-//program.js
-
-document.writeln('Hello World!');
+// CHAPTER 3
 
 var empty_object = {};
 
-// CHAPTER 3
 // OBJECT LITERALS
 var stooge = {
     "first-name": "Jerome",
@@ -105,7 +102,7 @@ flight.hasOwnProperty('constructor')	// false
 var name;
 for(name in another_stooge) {
   if(typeof another_stooge[name] !== 'function') {
-    document.writeIn(name + ': ' + another_stooge[name]);
+    document.writeln(name + ': ' + another_stooge[name]);
   }
 }
 
@@ -118,7 +115,7 @@ var properties = [
   'profession'
 ];
 for(i = 0; i < properties.length; i += 1) {
-  document.writeIn(properties[i] + ': ' +
+  document.writeln(properties[i] + ': ' +
     another_stooge[properties[i]]);
 }
 
@@ -166,3 +163,69 @@ var add = function(a, b) { // no function name given  a, b are initlaized to the
 };
 
 // INVOCATION
+// There is no error if the number of parameters does not equal the number of variables
+// There is no type checking either!
+// If too few arguements are passed then undefined is inserted for the remaining aprameters
+var myObject = {
+  value: 0;,
+  increment: function (inc) {
+    this.value += typeof inc === 'number' ? inc : 1;
+  }
+};
+
+myObject.increment();
+document.writeln(myObject.value);	// 1
+
+myObject.increment(2);
+document.writeln(myObject.value);	// 3
+
+var sum = add(3, 4)	// 7
+
+// augment myObject with a double method
+myObject.double = function() {
+  var that = this; // Workaround
+  
+  var = helper = function() {
+    that.value = add(that.value, that.value);
+  };
+  
+  helper();	// Invoke helper as a function
+};
+
+// invoke double as a method
+
+myObject.double();
+document.writeln(myObject.value);
+
+// Create a constructor function called Quo
+// It makes an object with a status property
+
+var Quo = function (string) {
+  this.status = string;
+};
+
+// Give all instances of Quo a public method
+
+// called get_status.
+
+Quo.prototype.get_status = function () {
+  return this.status;
+};
+
+// Make an isntance of Quo
+
+var myQuo = new Quo("confused");
+
+document.writeln(myQuo.get_status());	// confused
+
+// make an array of two numbers and add them
+
+var array = [3,4];
+var sum = add.apply(null, array);	// sum is 7
+
+// Make an object with a status member
+
+var statusObject = {
+  status: 'A-OK'
+};
+
